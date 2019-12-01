@@ -28,3 +28,29 @@ export function addRoleRight(roleId, rids) {
     }
   })
 }
+
+export function editRoleInfo(roleInfo) {
+  return request({
+    url: `roles/${roleInfo.id}`,
+    method: "put",
+    data: {
+      roleName: roleInfo.roleName,
+      roleDesc: roleInfo.roleDesc
+    }
+  })
+}
+
+export function addRole(roleInfo) {
+  return request({
+    url: "/roles",
+    method: "post",
+    data: roleInfo
+  })
+}
+
+export function deleteRole(roleId) {
+  return request({
+    url: `roles/${roleId}`,
+    method: "delete"
+  })
+}
