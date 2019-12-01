@@ -68,7 +68,7 @@
             <el-button type="primary" icon="el-icon-edit" @click="showEditDialog(scope.row.id)"></el-button>
             <el-button type="danger" icon="el-icon-delete" @click="deleteUser(scope.row.id)"></el-button>
             <el-tooltip effect="dark" content="分配角色" placement="top-end" :enterable="false">
-              <el-button type="warning" icon="el-icon-s-tools"></el-button>
+              <el-button type="warning" icon="el-icon-s-tools" @click="showSetRoleDialog(scope.row)"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -129,11 +129,36 @@
     <el-button type="primary" @click="editUser">确 定</el-button>
   </span>
     </el-dialog>
+
+    <el-dialog
+            title="分配角色"
+            :visible.sync="setRoleDialogVisible"
+            @close="setRoleDialogClose"
+            width="30%">
+      <div>
+        <p>当前的用户: {{setRoleData.username}}</p>
+        <p>当前的角色: {{setRoleData.role_name}}</p>
+        <p>选择角色：
+          <el-select v-model="selectRole" placeholder="请选择">
+          <el-option
+                  v-for="item in rolesList"
+                  :key="item.id"
+                  :label="item.roleName"
+                  :value="item.id">
+          </el-option>
+        </el-select>
+        </p>
+      </div>
+      <span slot="footer" class="dialog-footer">
+    <el-button @click="setRoleDialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="setUserRole">确 定</el-button>
+  </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-  import {getUsersList, changeUserState, addUser, getUserInfo, editUser, deleteUser} from "../../../../api/users.js";
+  import {getUsersList, changeUserState, addUser, getUserInfo, editUser, deleteUser, getRolesList, setUserRole} from "../../../../api/users.js";
 
   export default {
     name: "Users",
@@ -201,7 +226,11 @@
             {required: true, message: '请输入手机号', trigger: 'blur'},
             {validator: mobileRules, trigger: "blur"}
           ]
-        }
+        },
+        setRoleDialogVisible: false,
+        setRoleData: {},
+        selectRole: "",
+        rolesList: []
       };
     },
     methods: {
@@ -283,6 +312,28 @@
         }).catch(() => {
           this.$message.warning("取消删除成功");
         });
+      },
+      showSetRoleDialog(userInfo){
+        this.setRoleData = userInfo;
+        getRolesList().then(res => {
+          console.log(res);
+          if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
+          this.rolesList = res.data;
+        });
+        this.setRoleDialogVisible = true;
+      },
+      setUserRole(){
+        setUserRole(this.setRoleData.id, this.selectRole).then(res => {
+          console.log(res);
+          if(res.meta.status !== 200) return this.$message.error(res.meta.msg);
+          this.$message.success(res.meta.msg);
+          this.getUsersList();
+          this.setRoleDialogVisible = false;
+        })
+      },
+      setRoleDialogClose(){
+        this.setRoleData = {};
+        this.selectRole = "";
       }
     },
     created() {
