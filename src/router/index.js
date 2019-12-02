@@ -9,6 +9,7 @@ const Welcome = () => import("../views/Home/childrenViews/Welcome/Welcome.vue");
 const Users = () => import("../views/Home/childrenViews/Users/Users.vue");
 const Rights = () => import("../views/Home/childrenViews/Rights/Rights.vue");
 const Roles = () => import("../views/Home/childrenViews/Roles/Roles.vue");
+const Categories = () => import("../views/Home/childrenViews/Categories/Categories.vue");
 
 const routes = [
   {path: "/", redirect: "/login"},
@@ -18,7 +19,8 @@ const routes = [
       {path: "/welcome", component: Welcome},
       {path: "/users", component: Users},
       {path: "/rights", component: Rights},
-      {path: "/roles", component: Roles}
+      {path: "/roles", component: Roles},
+      {path: "/categories", component: Categories}
     ]
   }
 ];

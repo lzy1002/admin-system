@@ -5,6 +5,9 @@ import router from './router';
 
 import "./common/stylus/index.styl";
 
+import treeTable from "vue-table-with-tree-grid";
+Vue.component("tree-table", treeTable);
+
 Vue.config.productionTip = false;
 
 new Vue({
