@@ -11,6 +11,8 @@ const Rights = () => import("../views/Home/childrenViews/Rights/Rights.vue");
 const Roles = () => import("../views/Home/childrenViews/Roles/Roles.vue");
 const Categories = () => import("../views/Home/childrenViews/Categories/Categories.vue");
 const Params = () => import("../views/Home/childrenViews/Params/Params.vue");
+const List = () => import("../views/Home/childrenViews/List/List.vue");
+const AddGoods = () => import("../views/Home/childrenViews/AddGoods/AddGoods.vue");
 
 const routes = [
   {path: "/", redirect: "/login"},
@@ -22,7 +24,9 @@ const routes = [
       {path: "/rights", component: Rights},
       {path: "/roles", component: Roles},
       {path: "/categories", component: Categories},
-      {path: "/params", component: Params}
+      {path: "/params", component: Params},
+      {path: "/goods", component: List},
+      {path: "/add-goods", component: AddGoods}
     ]
   }
 ];

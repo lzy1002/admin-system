@@ -232,9 +232,8 @@
           console.log(res);
           if(res.meta.status !== 200) return;
           res.data.forEach((item) => {
-            if(item.attr_vals){
-              item.attr_vals_arr = item.attr_vals.split(" ");
-            }
+            item.attr_vals_arr = item.attr_vals.length <= 0 ? [] : item.attr_vals.split(" ");
+
             item.inputVisible = false;
             item.inputValue = "";
           });
