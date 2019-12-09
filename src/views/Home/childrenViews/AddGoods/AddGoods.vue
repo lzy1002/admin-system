@@ -45,14 +45,14 @@
             </el-form-item>
           </el-tab-pane>
           <el-tab-pane label="商品参数" :name="'1'">
-            <el-form-item :label="item.attr_name" v-for="(item, index) in tableData.many">
+            <el-form-item :label="item.attr_name" v-for="(item, index) in tableData.many" :key="index">
               <el-checkbox-group v-model="item.attr_vals_arr">
                 <el-checkbox style="margin: 0 10px 0 0" v-for="(item1, index) in item.attr_vals_arr" :label="item1" border></el-checkbox>
               </el-checkbox-group>
             </el-form-item>
           </el-tab-pane>
           <el-tab-pane label="商品属性" :name="'2'">
-            <el-form-item :label="item.attr_name" v-for="(item, index) in tableData.only">
+            <el-form-item :label="item.attr_name" v-for="(item, index) in tableData.only" :key="index">
               <el-input v-model="item.attr_vals"></el-input>
             </el-form-item>
           </el-tab-pane>

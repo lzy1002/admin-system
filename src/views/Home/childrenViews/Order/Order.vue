@@ -82,8 +82,7 @@
           <el-cascader
                   v-model="addressForm.address1"
                   :props="addressProps"
-                  :options="citydata"
-                  @change="cascaderChange"></el-cascader>
+                  :options="citydata"></el-cascader>
         </el-form-item>
         <el-form-item label="详细地址" prop="address2">
           <el-input v-model="addressForm.address2"></el-input>

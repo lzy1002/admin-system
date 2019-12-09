@@ -3,18 +3,23 @@ import VueRouter from 'vue-router'
 
 Vue.use(VueRouter);
 
-const Login = () => import("../views/Login/Login.vue");
-const Home = () => import("../views/Home/Home.vue");
-const Welcome = () => import("../views/Home/childrenViews/Welcome/Welcome.vue");
-const Users = () => import("../views/Home/childrenViews/Users/Users.vue");
-const Rights = () => import("../views/Home/childrenViews/Rights/Rights.vue");
-const Roles = () => import("../views/Home/childrenViews/Roles/Roles.vue");
-const Categories = () => import("../views/Home/childrenViews/Categories/Categories.vue");
-const Params = () => import("../views/Home/childrenViews/Params/Params.vue");
-const List = () => import("../views/Home/childrenViews/List/List.vue");
-const AddGoods = () => import("../views/Home/childrenViews/AddGoods/AddGoods.vue");
-const Order = () => import("../views/Home/childrenViews/Order/Order.vue");
-const Report = () => import("../views/Home/childrenViews/Report/Report.vue");
+const Login = () => import(/* webpackChunkName: "Login_Home_Welcome" */ "../views/Login/Login.vue");
+const Home = () => import(/* webpackChunkName: "Login_Home_Welcome" */ "../views/Home/Home.vue");
+const Welcome = () => import(/* webpackChunkName: "Login_Home_Welcome" */ "../views/Home/childrenViews/Welcome/Welcome.vue");
+
+const Users = () => import(/* webpackChunkName: "Users" */ "../views/Home/childrenViews/Users/Users.vue");
+
+const Rights = () => import(/* webpackChunkName: "Right_Roles" */ "../views/Home/childrenViews/Rights/Rights.vue");
+const Roles = () => import(/* webpackChunkName: "Right_Roles" */ "../views/Home/childrenViews/Roles/Roles.vue");
+
+const Categories = () => import(/* webpackChunkName: "Categories_Params_List_AddGoods" */ "../views/Home/childrenViews/Categories/Categories.vue");
+const Params = () => import(/* webpackChunkName: "Categories_Params_List_AddGoods" */ "../views/Home/childrenViews/Params/Params.vue");
+const List = () => import(/* webpackChunkName: "Categories_Params_List_AddGoods" */ "../views/Home/childrenViews/List/List.vue");
+const AddGoods = () => import(/* webpackChunkName: "Categories_Params_List_AddGoods" */ "../views/Home/childrenViews/AddGoods/AddGoods.vue");
+
+const Order = () => import(/* webpackChunkName: "Order" */ "../views/Home/childrenViews/Order/Order.vue");
+
+const Report = () => import(/* webpackChunkName: "Report" */ "../views/Home/childrenViews/Report/Report.vue");
 
 const routes = [
   {path: "/", redirect: "/login"},
